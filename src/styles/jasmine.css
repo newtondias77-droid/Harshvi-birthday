@@ -1,0 +1,330 @@
+/* ===========================
+   JASMINE SECTION
+=========================== */
+
+.jasmine-show {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  overflow: hidden;
+  padding: 40px;
+  background:
+    radial-gradient(circle at 25% 35%, rgba(255, 215, 90, 0.35), transparent 28%),
+    radial-gradient(circle at 75% 65%, rgba(50, 220, 210, 0.28), transparent 32%),
+    linear-gradient(135deg, #071a2f, #123f5b, #072433);
+}
+
+.jasmine-stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.75;
+  background-image:
+    radial-gradient(circle, #fff6b8 0 2px, transparent 3px),
+    radial-gradient(circle, rgba(255, 255, 255, 0.8) 0 1px, transparent 2px);
+  background-size:
+    90px 90px,
+    55px 55px;
+  animation: jasmineStarsMove 12s linear infinite;
+}
+
+.jasmine-image {
+  position: relative;
+  z-index: 2;
+  width: 420px;
+  max-width: 44vw;
+  max-height: 80vh;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 18px 30px rgba(0, 0, 0, 0.35))
+    drop-shadow(0 0 35px rgba(63, 224, 215, 0.45));
+  animation: jasmineFloat 3.5s ease-in-out infinite;
+}
+
+.jasmine-message-box {
+  position: relative;
+  z-index: 3;
+  width: min(620px, 100%);
+  padding: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 32px;
+  background: rgba(7, 34, 52, 0.72);
+  box-shadow:
+    0 22px 60px rgba(0, 0, 0, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(18px);
+}
+
+.jasmine-small-title {
+  margin-bottom: 12px;
+  color: #ffe58a;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+#jasmineName {
+  margin-bottom: 20px;
+  color: white;
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  text-shadow:
+    0 0 18px rgba(255, 229, 138, 0.5),
+    0 0 30px rgba(63, 224, 215, 0.35);
+}
+
+#jasmineMessage {
+  margin-bottom: 32px;
+  color: #f5fbff;
+  font-size: 1.15rem;
+  line-height: 1.8;
+}
+
+#nextPrincessBtn {
+  padding: 16px 34px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #f7d86b, #4edbd2);
+  color: #082431;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+#nextPrincessBtn:hover {
+  transform: translateY(-4px) scale(1.04);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.32);
+}
+
+.jasmine-enter {
+  animation: jasmineEnter 0.9s ease;
+}
+
+@keyframes jasmineEnter {
+  from {
+    opacity: 0;
+    transform: translateX(120px) scale(0.92);
+    filter: blur(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes jasmineFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes jasmineStarsMove {
+  from {
+    background-position:
+      0 0,
+      20px 30px;
+  }
+
+  to {
+    background-position:
+      90px 90px,
+      -35px 85px;
+  }
+}
+
+@media (max-width: 850px) {
+  .jasmine-show {
+    flex-direction: column;
+    gap: 20px;
+    padding: 30px 18px;
+    text-align: center;
+  }
+
+  .jasmine-image {
+    width: 300px;
+    max-width: 82vw;
+    max-height: 42vh;
+  }
+
+  .jasmine-message-box {
+    padding: 28px 22px;
+  }
+
+  #jasmineMessage {
+    font-size: 1rem;
+  }
+}
+
+/* JASMINE AGRABAH PALACE */
+
+.jasmine-palace-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url("/princess/agrabah-palace.png");
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: 85% auto;
+  opacity: 0.45;
+  filter:
+    blur(1.5px)
+    drop-shadow(0 0 35px rgba(255, 215, 120, 0.55));
+  animation: palaceFloat 8s ease-in-out infinite;
+}
+
+.jasmine-palace-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(3, 16, 35, 0.22),
+      rgba(3, 20, 39, 0.45)
+    ),
+    linear-gradient(
+      to top,
+      rgba(2, 15, 28, 0.65),
+      rgba(5, 33, 52, 0.08) 65%
+    );
+}
+
+.jasmine-stars {
+  z-index: 2;
+}
+
+.jasmine-image {
+  z-index: 3;
+}
+
+.jasmine-message-box {
+  z-index: 4;
+}
+
+@keyframes palaceFloat {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-8px) scale(1.01);
+  }
+}
+/* Shooting star over Agrabah */
+
+/* Multiple shooting stars over Agrabah */
+
+.jasmine-shooting-stars {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.jasmine-shooting-stars span {
+  position: absolute;
+  top: -160px;
+  right: 12%;
+  width: 150px;
+  height: 3px;
+  border-radius: 999px;
+  opacity: 0;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 231, 145, 0.5),
+    #fffbe0
+  );
+
+  box-shadow:
+    0 0 10px rgba(255, 242, 185, 0.9),
+    0 0 25px rgba(255, 210, 90, 0.75);
+
+  transform: rotate(120deg);
+  transform-origin: right center;
+
+  animation: jasmineShootingStar 15s linear infinite;
+}
+
+.jasmine-shooting-stars span::after {
+  content: "";
+  position: absolute;
+  right: -5px;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+
+  background: #fffce8;
+
+  transform: translateY(-50%);
+
+  box-shadow:
+    0 0 12px #fff9cf,
+    0 0 28px rgba(255, 215, 100, 0.95);
+}
+
+/* One shooting star every 5 seconds */
+
+.jasmine-shooting-stars span:nth-child(1) {
+  right: 8%;
+  animation-delay: 0s;
+}
+
+.jasmine-shooting-stars span:nth-child(2) {
+  right: 42%;
+  animation-delay: 5s;
+  width: 115px;
+}
+
+.jasmine-shooting-stars span:nth-child(3) {
+  right: 70%;
+  animation-delay: 10s;
+  width: 135px;
+}
+
+@keyframes jasmineShootingStar {
+  0% {
+    top: -160px;
+    transform: translateX(0) rotate(120deg);
+    opacity: 0;
+  }
+
+  3% {
+    opacity: 1;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  20% {
+    top: 105%;
+    transform: translateX(-420px) rotate(120deg);
+    opacity: 0;
+  }
+
+  100% {
+    top: 105%;
+    transform: translateX(-420px) rotate(120deg);
+    opacity: 0;
+  }
+}

@@ -1,0 +1,338 @@
+/* ===========================
+   ELSA KINGDOM
+=========================== */
+
+.elsa-show {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  overflow: hidden;
+  padding: 40px;
+  background:
+    radial-gradient(circle at 50% 12%, rgba(220, 250, 255, 0.7), transparent 24%),
+    linear-gradient(135deg, #061629, #174f79, #8fd3ec);
+}
+
+/* Ice palace background */
+
+.elsa-castle-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url("/princess/elsa-castle.png");
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: cover;
+  opacity: 0.5;
+  filter:
+    blur(1px)
+    brightness(0.85)
+    drop-shadow(0 0 40px rgba(170, 235, 255, 0.55));
+  animation: elsaCastleZoom 14s ease-in-out infinite alternate;
+}
+
+/* Dark-blue overlay so Elsa and the message remain visible */
+
+.elsa-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(3, 16, 34, 0.18),
+      rgba(4, 25, 48, 0.55)
+    ),
+    linear-gradient(
+      to top,
+      rgba(2, 12, 28, 0.75),
+      rgba(16, 80, 120, 0.08) 65%
+    );
+}
+
+/* Snow effect */
+
+.elsa-snow {
+  position: absolute;
+  inset: -100px 0 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.85;
+  background-image:
+    radial-gradient(circle, white 0 3px, transparent 4px),
+    radial-gradient(circle, rgba(220, 250, 255, 0.9) 0 2px, transparent 3px),
+    radial-gradient(circle, rgba(255, 255, 255, 0.75) 0 1px, transparent 2px);
+  background-size:
+    110px 110px,
+    75px 75px,
+    45px 45px;
+  background-position:
+    0 0,
+    30px 40px,
+    15px 20px;
+  animation: elsaSnowFall 9s linear infinite;
+}
+
+/* Elsa GIF */
+
+.elsa-image {
+  position: relative;
+  z-index: 3;
+  width: 420px;
+  max-width: 44vw;
+  max-height: 80vh;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 18px 30px rgba(0, 0, 0, 0.38))
+    drop-shadow(0 0 40px rgba(160, 230, 255, 0.65));
+  animation: elsaFloat 3.8s ease-in-out infinite;
+}
+
+/* Elsa message */
+
+.elsa-message-box {
+  position: relative;
+  z-index: 4;
+  width: min(620px, 100%);
+  padding: 42px;
+  border: 1px solid rgba(220, 248, 255, 0.5);
+  border-radius: 32px;
+  background: rgba(5, 31, 57, 0.72);
+  box-shadow:
+    0 22px 65px rgba(0, 0, 0, 0.34),
+    0 0 35px rgba(135, 220, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(18px);
+}
+
+.elsa-small-title {
+  margin-bottom: 12px;
+  color: #bfefff;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+#elsaName {
+  margin-bottom: 20px;
+  color: white;
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  text-shadow:
+    0 0 20px rgba(190, 240, 255, 0.75),
+    0 0 38px rgba(100, 190, 255, 0.45);
+}
+
+#elsaMessage {
+  margin-bottom: 32px;
+  color: #f4fbff;
+  font-size: 1.15rem;
+  line-height: 1.8;
+}
+
+#nextElsaBtn {
+  padding: 16px 34px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ffffff, #81d8f5);
+  color: #07304b;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.25),
+    0 0 22px rgba(185, 240, 255, 0.4);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+#nextElsaBtn:hover {
+  transform: translateY(-4px) scale(1.04);
+  box-shadow:
+    0 18px 42px rgba(0, 0, 0, 0.32),
+    0 0 30px rgba(210, 248, 255, 0.65);
+}
+
+/* Elsa screen entrance */
+
+.elsa-enter {
+  animation: elsaEnter 1s ease;
+}
+
+@keyframes elsaEnter {
+  from {
+    opacity: 0;
+    transform: scale(1.08);
+    filter: blur(12px) brightness(1.7);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0) brightness(1);
+  }
+}
+
+@keyframes elsaFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes elsaCastleZoom {
+  from {
+    transform: scale(1.03);
+  }
+
+  to {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes elsaSnowFall {
+  from {
+    background-position:
+      0 -100px,
+      30px -60px,
+      15px -40px;
+  }
+
+  to {
+    background-position:
+      45px 100vh,
+      -25px 100vh,
+      55px 100vh;
+  }
+}
+
+/* Mobile layout */
+
+@media (max-width: 850px) {
+  .elsa-show {
+    flex-direction: column;
+    gap: 20px;
+    padding: 30px 18px;
+    text-align: center;
+  }
+
+  .elsa-image {
+    width: 300px;
+    max-width: 82vw;
+    max-height: 42vh;
+  }
+
+  .elsa-message-box {
+    padding: 28px 22px;
+  }
+
+  #elsaMessage {
+    font-size: 1rem;
+  }
+}
+/* ===========================
+   ELSA AURORA + DEPTH SNOW
+=========================== */
+
+.elsa-show::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.42;
+  filter: blur(35px);
+  background:
+    linear-gradient(
+      115deg,
+      transparent 25%,
+      rgba(90, 255, 230, 0.45) 42%,
+      rgba(125, 170, 255, 0.5) 55%,
+      transparent 72%
+    );
+  transform: rotate(-8deg);
+  animation: elsaAuroraMove 10s ease-in-out infinite alternate;
+}
+
+/* Existing snow becomes the middle layer */
+.elsa-snow {
+  z-index: 3;
+}
+
+/* Small distant snow */
+.elsa-show::after {
+  content: "";
+  position: absolute;
+  inset: -80px 0 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.55;
+  background-image:
+    radial-gradient(circle, white 0 1px, transparent 2px),
+    radial-gradient(circle, rgba(220, 248, 255, 0.8) 0 1px, transparent 2px);
+  background-size:
+    38px 38px,
+    62px 62px;
+  background-position:
+    0 0,
+    20px 30px;
+  animation: elsaSnowFar 14s linear infinite;
+}
+
+/* Large front snowflakes */
+.elsa-message-box::after {
+  content: "❄  ❅  ❆  ❄";
+  position: fixed;
+  inset: -80px 0 0;
+  z-index: 8;
+  pointer-events: none;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: clamp(22px, 3vw, 42px);
+  letter-spacing: 18vw;
+  line-height: 55vh;
+  white-space: nowrap;
+  animation: elsaSnowFront 11s linear infinite;
+}
+
+@keyframes elsaAuroraMove {
+  from {
+    transform: translateX(-8%) rotate(-8deg) scale(1);
+  }
+
+  to {
+    transform: translateX(8%) rotate(-3deg) scale(1.08);
+  }
+}
+
+@keyframes elsaSnowFar {
+  from {
+    background-position:
+      0 -80px,
+      20px -40px;
+  }
+
+  to {
+    background-position:
+      25px 100vh,
+      -30px 100vh;
+  }
+}
+
+@keyframes elsaSnowFront {
+  from {
+    transform: translateY(-10vh) translateX(-5vw) rotate(0deg);
+  }
+
+  to {
+    transform: translateY(110vh) translateX(7vw) rotate(25deg);
+  }
+}

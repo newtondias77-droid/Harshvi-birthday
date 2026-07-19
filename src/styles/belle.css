@@ -1,0 +1,320 @@
+/* ===========================
+   BELLE KINGDOM
+=========================== */
+
+.belle-show {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 40px;
+
+  background:
+    radial-gradient(
+      circle at 50% 15%,
+      rgba(255, 214, 120, 0.45),
+      transparent 28%
+    ),
+    linear-gradient(135deg, #2d1708, #5a3318, #8d5a2d);
+}
+
+/* Castle background */
+
+.belle-castle-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  background-image: url("/princess/beast-castle.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+
+  opacity: 0.52;
+
+  filter:
+    brightness(0.82)
+    blur(1px);
+
+  animation: belleCastleFloat 12s ease-in-out infinite alternate;
+}
+
+/* Warm overlay */
+
+.belle-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(25, 10, 4, 0.22),
+      rgba(30, 12, 5, 0.48)
+    ),
+    linear-gradient(
+      to top,
+      rgba(20, 8, 3, 0.75),
+      rgba(0, 0, 0, 0.04) 68%
+    );
+}
+
+/* Main Belle layout */
+
+.belle-stage {
+  position: relative;
+  z-index: 4;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 55px;
+
+  width: min(1100px, 100%);
+}
+
+/* Falling rose-petal GIFs */
+
+.belle-rose-petals {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.belle-rose-petals img {
+  position: absolute;
+  top: -180px;
+
+  width: 130px;
+  height: auto;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  animation: bellePetalFall 14s linear infinite;
+}
+
+.belle-rose-petals img:nth-child(1) {
+  left: 7%;
+  animation-delay: 0s;
+}
+
+.belle-rose-petals img:nth-child(2) {
+  left: 33%;
+  width: 110px;
+  animation-delay: 3.5s;
+}
+
+.belle-rose-petals img:nth-child(3) {
+  left: 61%;
+  width: 125px;
+  animation-delay: 7s;
+}
+
+.belle-rose-petals img:nth-child(4) {
+  left: 84%;
+  width: 105px;
+  animation-delay: 10.5s;
+}
+
+/* Belle GIF */
+
+.belle-image {
+  position: relative;
+  flex: 0 0 auto;
+
+  width: 420px;
+  max-width: 43vw;
+  max-height: 80vh;
+
+  object-fit: contain;
+  object-position: center bottom;
+
+  filter:
+    drop-shadow(0 18px 30px rgba(0, 0, 0, 0.38))
+    drop-shadow(0 0 28px rgba(255, 210, 120, 0.38));
+
+  animation: belleFloat 3.5s ease-in-out infinite;
+}
+
+/* Message box */
+
+.belle-message-box {
+  position: relative;
+  flex: 1;
+
+  width: min(620px, 100%);
+  padding: 42px;
+
+  border: 1px solid rgba(255, 228, 170, 0.35);
+  border-radius: 32px;
+
+  background: rgba(40, 20, 10, 0.74);
+
+  backdrop-filter: blur(18px);
+
+  box-shadow:
+    0 22px 65px rgba(0, 0, 0, 0.38),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.belle-small-title {
+  margin: 0 0 12px;
+
+  color: #ffd87d;
+
+  font-size: 1rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+#belleName {
+  margin: 0 0 20px;
+
+  color: white;
+
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  line-height: 1.05;
+
+  text-shadow:
+    0 0 15px rgba(255, 220, 120, 0.55);
+}
+
+#belleMessage {
+  margin: 0 0 30px;
+
+  color: #fff9ef;
+
+  font-size: 1.15rem;
+  line-height: 1.8;
+}
+
+#nextBelleBtn {
+  padding: 16px 34px;
+
+  border: none;
+  border-radius: 999px;
+
+  background: linear-gradient(135deg, #ffe08d, #f3b548);
+  color: #402000;
+
+  font-size: 1rem;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow: 0 12px 28px rgba(60, 25, 0, 0.28);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+#nextBelleBtn:hover {
+  transform: translateY(-4px) scale(1.04);
+
+  box-shadow:
+    0 17px 36px rgba(255, 200, 100, 0.35);
+}
+
+/* Entrances and animations */
+
+.belle-enter {
+  animation: belleEnter 0.9s ease;
+}
+
+@keyframes belleEnter {
+  from {
+    opacity: 0;
+    transform: translateY(70px);
+    filter: blur(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes belleFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes belleCastleFloat {
+  from {
+    transform: scale(1.02);
+  }
+
+  to {
+    transform: scale(1.07);
+  }
+}
+
+@keyframes bellePetalFall {
+  0% {
+    transform: translateY(-180px);
+    opacity: 0;
+  }
+
+  7% {
+    opacity: 0.82;
+  }
+
+  92% {
+    opacity: 0.82;
+  }
+
+  100% {
+    transform: translateY(120vh);
+    opacity: 0;
+  }
+}
+
+/* Mobile layout */
+
+@media (max-width: 850px) {
+  .belle-show {
+    padding: 24px 16px;
+  }
+
+  .belle-stage {
+    flex-direction: column;
+    gap: 18px;
+    text-align: center;
+  }
+
+  .belle-image {
+    width: 290px;
+    max-width: 82vw;
+    max-height: 42vh;
+  }
+
+  .belle-message-box {
+    width: min(620px, 100%);
+    padding: 27px 21px;
+  }
+
+  #belleMessage {
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+  .belle-rose-petals img {
+    width: 90px;
+  }
+}
