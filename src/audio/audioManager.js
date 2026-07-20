@@ -159,6 +159,7 @@ fireworks: {
 
 let currentAudio = null;
 let currentTrackName = null;
+let resumeWhenVisible = false;
 
 export function playMusic(trackName) {
   const track = tracks[trackName];
@@ -219,6 +220,8 @@ export function playMusic(trackName) {
 }
 
 export function stopMusic() {
+  resumeWhenVisible = false;
+
   if (!currentAudio) {
     return;
   }
@@ -230,3 +233,22 @@ export function stopMusic() {
   currentAudio = null;
   currentTrackName = null;
 }
+document.addEventListener("visibilitychange", () => {
+  if (!currentAudio) {
+    return;
+  }
+
+  if (document.hidden) {
+    resumeWhenVisible = !currentAudio.paused;
+    currentAudio.pause();
+    return;
+  }
+
+  if (resumeWhenVisible) {
+    currentAudio.play().catch((error) => {
+      console.error("Could not resume the music:", error);
+    });
+
+    resumeWhenVisible = false;
+  }
+});
