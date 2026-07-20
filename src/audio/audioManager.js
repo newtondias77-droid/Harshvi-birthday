@@ -1,157 +1,158 @@
+const BASE = import.meta.env.BASE_URL;
 const tracks = {
   ironman: {
     name: "Iron Man",
-    src: "/audio/marvel/ironman.mp3",
+    src: `${BASE}audio/marvel/ironman.mp3`,
     startAt: 30,
   },
   captain: {
   name: "Captain America",
-  src: "/audio/marvel/captain.mp3",
+  src: `${BASE}audio/marvel/captain.mp3`,
   startAt: 25,
 },
 thor: {
   name: "Thor",
-  src: "/audio/marvel/thor.mp3",
+  src: `${BASE}audio/marvel/thor.mp3`,
   startAt: 20,
 },
 spiderman: {
   name: "spiderman",
-  src: "/audio/marvel/spiderman.mp3",
+  src: `${BASE}audio/marvel/spiderman.mp3`,
   startAt: 20,
 },
 miles: {
   name: "Miles Morales",
-  src: "/audio/marvel/miles.mp3",
+  src: `${BASE}audio/marvel/miles.mp3`,
   startAt: 20,
 },
 strange: {
   name: "Doctor Strange",
-  src: "/audio/marvel/strange.mp3",
+  src: `${BASE}audio/marvel/strange.mp3`,
   startAt: 20,
 },
 wolverine: {
   name: "Wolverine",
-  src: "/audio/marvel/wolverine.mp3",
+  src: `${BASE}audio/marvel/wolverine.mp3`,
   startAt: 25,
 },
 deadpool: {
   name: "Deadpool",
-  src: "/audio/marvel/deadpool.mp3",
+  src: `${BASE}audio/marvel/deadpool.mp3`,
   startAt: 28,
 },
 hulk: {
   name: "Hulk",
-  src: "/audio/marvel/hulk.mp3",
-  startAt: 25,
+  src: `${BASE}audio/marvel/hulk.mp3`,
+  startAt: 10,
 },
 widow: {
   name: "Black Widow",
-  src: "/audio/marvel/widow.mp3",
+  src: `${BASE}audio/marvel/widow.mp3`,
   startAt: 8,
 },
 hawkeye: {
   name: "Hawkeye",
-  src: "/audio/marvel/hawkeye.mp3",
+  src: `${BASE}audio/marvel/hawkeye.mp3`,
   startAt: 0,
 },
 
 loki: {
   name: "Loki",
-  src: "/audio/marvel/loki.mp3",
+  src: `${BASE}audio/marvel/loki.mp3`,
   startAt: 0,
 },
 
 wanda: {
   name: "Scarlet Witch",
-  src: "/audio/marvel/wanda.mp3",
+  src: `${BASE}audio/marvel/wanda.mp3`,
   startAt: 4,
 },
 
 vision: {
   name: "Vision",
-  src: "/audio/marvel/vision.mp3",
+  src: `${BASE}audio/marvel/vision.mp3`,
   startAt: 0,
 },
 
 falcon: {
   name: "Falcon",
-  src: "/audio/marvel/falcon.mp3",
+  src: `${BASE}audio/marvel/falcon.mp3`,
   startAt: 10,
 },
 
 captainmarvel: {
   name: "Captain Marvel",
-  src: "/audio/marvel/captainmarvel.mp3",
+  src: `${BASE}audio/marvel/captainmarvel.mp3`,
   startAt: 5,
 },
 
 panther: {
   name: "Black Panther",
-  src: "/audio/marvel/panther.mp3",
+  src: `${BASE}audio/marvel/panther.mp3`,
   startAt: 6,
 },
 
 groot: {
   name: "Groot",
-  src: "/audio/marvel/groot.mp3",
+  src: `${BASE}audio/marvel/groot.mp3`,
   startAt: 3,
 },
 
 starlord: {
   name: "Star-Lord",
-  src: "/audio/marvel/starlord.mp3",
+  src: `${BASE}audio/marvel/starlord.mp3`,
   startAt: 0,
 },
 
 thanos: {
   name: "Thanos",
-  src: "/audio/marvel/thanos.mp3",
+  src: `${BASE}audio/marvel/thanos.mp3`,
   startAt: 0,
 },
 barbie: {
   name: "Barbie",
-  src: "/audio/barbie/barbie.mp3",
+  src: `${BASE}audio/barbie/barbie.mp3`,
   startAt: 10,
 },
 jasmine: {
   name: "Princess Jasmine",
-  src: "/audio/princess/jasmine.mp3",
+  src: `${BASE}audio/princess/jasmine.mp3`,
   startAt: 24,
 },
 
 elsa: {
   name: "Elsa",
-  src: "/audio/princess/elsa.mp3",
+  src: `${BASE}audio/princess/elsa.mp3`,
   startAt: 15,
 },
 
 belle: {
   name: "Belle",
-  src: "/audio/princess/belle.mp3",
+  src: `${BASE}audio/princess/belle.mp3`,
   startAt: 15,
 },
 
 rapunzel: {
   name: "Rapunzel",
-  src: "/audio/princess/rapunzel.mp3",
+  src: `${BASE}audio/princess/rapunzel.mp3`,
   startAt: 11,
 },
 
 cinderella: {
   name: "Cinderella",
-  src: "/audio/princess/cinderella.mp3",
+  src: `${BASE}audio/princess/cinderella.mp3`,
   startAt: 10,
 },
 
 letter: {
   name: "Pirate Letter",
-  src: "/audio/letter/letter.mp3",
+  src: `${BASE}audio/letter/letter.mp3`,
   startAt: 7,
 },
 
 fireworks: {
   name: "Fireworks Finale",
-  src: "/audio/fireworks/finale.mp3",
+  src: `${BASE}audio/fireworks/finale.mp3`,
   startAt: 3,
 },
 };
@@ -169,32 +170,51 @@ export function playMusic(trackName) {
 
   stopMusic();
 
-  currentTrackName = trackName;
-  currentAudio = new Audio(track.src);
-  currentAudio.preload = "auto";
+  const audio = new Audio(track.src);
 
-  currentAudio.addEventListener(
+  currentAudio = audio;
+  currentTrackName = trackName;
+
+  audio.preload = "auto";
+
+  audio.addEventListener(
     "loadedmetadata",
     () => {
-      currentAudio.currentTime = track.startAt;
+      if (currentAudio !== audio) {
+        return;
+      }
 
-      currentAudio.play().catch((error) => {
-        console.error("Audio could not play:", error);
+      const safeStartTime = Math.min(
+        track.startAt,
+        Math.max(0, audio.duration - 0.1)
+      );
+
+      audio.currentTime = safeStartTime;
+
+      audio.play().catch((error) => {
+        console.error(`Could not play "${track.name}":`, error);
       });
     },
     { once: true }
   );
 
-  currentAudio.addEventListener("ended", () => {
-    if (!currentAudio || currentTrackName !== trackName) {
+  audio.addEventListener("ended", () => {
+    if (currentAudio !== audio || currentTrackName !== trackName) {
       return;
     }
 
-    currentAudio.currentTime = track.startAt;
+    audio.currentTime = Math.min(
+      track.startAt,
+      Math.max(0, audio.duration - 0.1)
+    );
 
-    currentAudio.play().catch((error) => {
-      console.error("Audio could not restart:", error);
+    audio.play().catch((error) => {
+      console.error(`Could not restart "${track.name}":`, error);
     });
+  });
+
+  audio.addEventListener("error", () => {
+    console.error(`Audio file could not be loaded: ${track.src}`);
   });
 }
 
@@ -204,8 +224,9 @@ export function stopMusic() {
   }
 
   currentAudio.pause();
-  currentAudio.currentTime = 0;
+  currentAudio.removeAttribute("src");
+  currentAudio.load();
+
   currentAudio = null;
   currentTrackName = null;
-
 }

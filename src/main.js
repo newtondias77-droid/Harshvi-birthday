@@ -1,3 +1,4 @@
+const BASE = import.meta.env.BASE_URL;
 import "./style.css";
 import "./styles/jasmine.css";
 import "./styles/elsa.css";
@@ -188,7 +189,7 @@ document.querySelector("#app").innerHTML = `
 
     <img
       class="castle-image"
-      src="/Princess/castle.png"
+      src="${BASE}princess/castle.png"
       alt="Castle"
     />
 
@@ -276,10 +277,10 @@ document.querySelector("#app").innerHTML = `
   <div class="belle-overlay"></div>
 
   <div class="belle-rose-petals">
-    <img src="/princess/rose-petal.gif" alt="" />
-    <img src="/princess/rose-petal.gif" alt="" />
-    <img src="/princess/rose-petal.gif" alt="" />
-    <img src="/princess/rose-petal.gif" alt="" />
+    <img src="${BASE}princess/rose-petal.gif" alt="" />
+    <img src="${BASE}princess/rose-petal.gif" alt="" />
+    <img src="${BASE}princess/rose-petal.gif" alt="" />
+    <img src="${BASE}princess/rose-petal.gif" alt="" />
   </div>
 
   <div class="belle-stage">
@@ -425,7 +426,7 @@ document.querySelector("#app").innerHTML = `
   <div class="scroll-scene">
     <img
       class="scroll-png"
-      src="/scroll/pirate-scroll.png"
+      src="${BASE}scroll/pirate-scroll.png"
       alt="Pirate scroll"
     />
 
@@ -452,10 +453,10 @@ document.querySelector("#app").innerHTML = `
   </div>
 </section>
 <div class="fireworks-gif-overlay hidden" id="fireworksGifOverlay">
-  <img
-    src="/fireworks/fireworks.gif"
-    alt="Birthday fireworks"
-  />
+<img
+  src="${BASE}fireworks/fireworks.gif"
+  alt="Birthday fireworks"
+/>
 
   <button id="closeFireworksBtn" type="button">
   Start From the Beginning ✨
